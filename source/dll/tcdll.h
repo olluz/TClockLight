@@ -91,6 +91,7 @@ void YearHandler(FORMATHANDLERSTRUCT* pstruc);
 void MonthHandler(FORMATHANDLERSTRUCT* pstruc);
 void DateHandler(FORMATHANDLERSTRUCT* pstruc);
 void DayOfWeekHandler(FORMATHANDLERSTRUCT* pstruc);
+void WeekOfYearHandler(FORMATHANDLERSTRUCT* pstruc);
 void HourHandler(FORMATHANDLERSTRUCT* pstruc);
 void MinuteHandler(FORMATHANDLERSTRUCT* pstruc);
 void SecondHandler(FORMATHANDLERSTRUCT* pstruc);
