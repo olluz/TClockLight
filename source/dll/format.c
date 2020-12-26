@@ -31,6 +31,7 @@ struct {
 	{ 'd', NULL, DateHandler },
 	{ 0, L"_d",  DateHandler },
 	{ 0, L"aaa", DayOfWeekHandler },
+	{ 0, L"cw", WeekOfYearHandler },
 	{ 'h', NULL, HourHandler },
 	{ 0, L"_h",  HourHandler },
 	{ 'n', NULL, MinuteHandler },
