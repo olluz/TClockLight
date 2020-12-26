@@ -273,6 +273,44 @@ void DayOfWeekHandler(FORMATHANDLERSTRUCT* pstruc)
 	while(*p && *pstruc->dp) *pstruc->dp++ = *p++;
 }
 
+/* cw [https://www.tondering.dk/claus/cal/week.php] */
+void WeekOfYearHandler(FORMATHANDLERSTRUCT* pstruc)
+{
+	int num, a, b, c, s, e, f, g, d, n;
+	pstruc->sp += 2;	
+
+	a = pstruc->pt->wMonth <= 2 ? pstruc->pt->wYear - 1 : pstruc->pt->wYear;
+	b = a/4 - a/100 + a/400;
+	c = (a-1)/4 - (a-1)/100 + (a-1)/400;
+	s = b - c;
+	if (pstruc->pt->wMonth <= 2) {
+		e = 0;
+		f = pstruc->pt->wDay - 1 + 31 * (pstruc->pt->wMonth-1);
+	} else {
+		e = s + 1;
+		f = pstruc->pt->wDay + ((153 * (pstruc->pt->wMonth-3) + 2) / 5) + 58 + s;
+	}
+	g = (a + b) % 7;
+	d = (f + g - e) % 7;
+	n = f + 3 - d;
+
+	if (n < 0)
+		num = 53 - (g - s) / 5;
+	else if (n > 364 + s)
+		num = 1;
+	else 
+		num = n/7 + 1;
+	
+	if (num > 9)
+	{
+		if(*pstruc->dp)
+			*pstruc->dp++ = (wchar_t)(num / 10 + '0');
+	}
+	if(*pstruc->dp)
+		*pstruc->dp++ = (wchar_t)(num % 10 + '0');
+}
+
+
 /* h, hh, _h */
 void HourHandler(FORMATHANDLERSTRUCT* pstruc)
 {
